@@ -1,0 +1,13 @@
+@import url("https://use.typekit.net/cem1coa.css");
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Arial", Times, serif, monospace;
+  --font-eurostile: "eurostile-extended", sans-serif;
+  --font-typewriter: "prestige-elite-std", monospace;
+}
+
+body {
+  min-height: 100svh;
+}
