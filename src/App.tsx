@@ -1,48 +1,5 @@
-import type { ComponentType } from 'react'
 import { Link, Route, Switch } from 'wouter'
-import About from './pages/About'
-import Home from './pages/Home'
-import Music from './pages/Music'
-import Shows from './pages/Shows'
-
-interface NavigationItem {
-  sortOrder: number
-  label: string
-  link: `/${string}`
-  component: ComponentType
-  className: string
-}
-
-const navigationItems = [
-  {
-    sortOrder: 0,
-    label: 'Home',
-    link: '/',
-    component: Home,
-    className: 'rotate-1',
-  },
-  {
-    sortOrder: 1,
-    label: 'Shows',
-    link: '/shows',
-    component: Shows,
-    className: '-rotate-2',
-  },
-  {
-    sortOrder: 2,
-    label: 'About',
-    link: '/about',
-    component: About,
-    className: '',
-  },
-  {
-    sortOrder: 3,
-    label: 'Music',
-    link: '/music',
-    component: Music,
-    className: 'rotate-1',
-  },
-] as const satisfies readonly NavigationItem[]
+import { navigationItems } from '@/config'
 
 const sortedNavigationItems = navigationItems.toSorted(
   (a, b) => a.sortOrder - b.sortOrder,

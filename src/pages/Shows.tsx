@@ -1,6 +1,7 @@
 import Papa from 'papaparse'
 import { useEffect, useState } from 'react'
-import { type Show, splitShows } from '../shows'
+import { splitShows } from '@/lib'
+import type { Show } from '@/types'
 
 export default function Shows() {
   const [shows, setShows] = useState<{ upcoming: Show[]; archive: Show[] }>({

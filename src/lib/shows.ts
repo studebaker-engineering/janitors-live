@@ -1,9 +1,4 @@
-export interface Show {
-  date: string
-  venue: string
-  location: string
-  bands: string
-}
+import type { Show } from "@/types"
 
 // Numeric calendar keys sort by year, month, and day without timezone conversion.
 function calendarKey(date: string): number | null {
