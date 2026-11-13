@@ -1,8 +1,52 @@
+import type { ComponentType } from 'react'
 import { Link, Route, Switch } from 'wouter'
 import About from './pages/About'
 import Home from './pages/Home'
 import Music from './pages/Music'
 import Shows from './pages/Shows'
+
+interface NavigationItem {
+  sortOrder: number
+  label: string
+  link: `/${string}`
+  component: ComponentType
+  className: string
+}
+
+const navigationItems = [
+  {
+    sortOrder: 0,
+    label: 'Home',
+    link: '/',
+    component: Home,
+    className: 'rotate-1',
+  },
+  {
+    sortOrder: 1,
+    label: 'Shows',
+    link: '/shows',
+    component: Shows,
+    className: '-rotate-2',
+  },
+  {
+    sortOrder: 2,
+    label: 'About',
+    link: '/about',
+    component: About,
+    className: '',
+  },
+  {
+    sortOrder: 3,
+    label: 'Music',
+    link: '/music',
+    component: Music,
+    className: 'rotate-1',
+  },
+] as const satisfies readonly NavigationItem[]
+
+const sortedNavigationItems = navigationItems.toSorted(
+  (a, b) => a.sortOrder - b.sortOrder,
+)
 
 function App() {
   return (
@@ -17,27 +61,26 @@ function App() {
         <div className="flex justify-center items-center mt-5 px-10">
           <nav>
             <ul className="list-none list-inside flex gap-8 font-typewriter font-bold uppercase">
-              <li className="bg-gray-800 text-white px-2 rotate-1">
-                <Link href="/">Home</Link>
-              </li>
-              <li className="bg-gray-800 text-white px-2 -rotate-2">
-                <Link href="/shows">Shows</Link>
-              </li>{' '}
-              <li className="bg-gray-800 text-white px-2">
-                <Link href="/about">About</Link>
-              </li>{' '}
-              <li className="bg-gray-800 text-white px-2 rotate-1">
-                <Link href="/music">Music</Link>
-              </li>
+              {sortedNavigationItems.map((item) => (
+                <li
+                  key={item.link}
+                  className={`bg-gray-800 text-white px-2 md:text-xl text-lg ${item.className}`}
+                >
+                  <Link href={item.link}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
 
         <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/shows" component={Shows} />
-          <Route path="/about" component={About} />
-          <Route path="/music" component={Music} />
+          {sortedNavigationItems.map((item) => (
+            <Route
+              key={item.link}
+              path={item.link}
+              component={item.component}
+            />
+          ))}
           <Route>
             <h2 className="text-center text-2xl font-bold mt-5">
               Page not found
