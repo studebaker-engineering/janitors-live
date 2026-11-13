@@ -1,4 +1,4 @@
-import type { NavigationItem } from './NavigationItem'
-import type { Show } from './Show'
+import type { NavigationItem } from "./NavigationItem";
+import type { Show } from "./Show";
 
-export type { NavigationItem, Show }
+export type { NavigationItem, Show };

@@ -1,6 +1,6 @@
 export interface Show {
-  date: string
-  venue: string
-  location: string
-  bands: string
+  date: string;
+  venue: string;
+  location: string;
+  bands: string;
 }

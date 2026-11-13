@@ -1,14 +1,14 @@
-import { Link, Route, Switch } from 'wouter'
-import { navigationItems } from '@/config'
+import { Link, Route, Switch } from "wouter";
+import { navigationItems } from "@/config";
 
 const sortedNavigationItems = navigationItems.toSorted(
   (a, b) => a.sortOrder - b.sortOrder,
-)
+);
 
 function App() {
   return (
     <main>
-      <section className="mt-5">
+      <section className="md:mt-15 mt-10">
         <div className="flex items-center justify-center">
           <h1 className="md:text-8xl text-6xl bg-gray-800 text-white font-eurostile font-medium uppercase px-3 pb-2 rotate-1">
             Janitors
@@ -46,7 +46,7 @@ function App() {
         </Switch>
       </section>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

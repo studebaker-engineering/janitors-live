@@ -1,9 +1,9 @@
-import type { ComponentType } from "react"
+import type { ComponentType } from "react";
 
 export interface NavigationItem {
-  sortOrder: number
-  label: string
-  link: `/${string}`
-  component: ComponentType
-  className: string
+  sortOrder: number;
+  label: string;
+  link: `/${string}`;
+  component: ComponentType;
+  className: string;
 }

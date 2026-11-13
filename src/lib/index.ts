@@ -1,3 +1,3 @@
 import { splitShows } from "./shows";
 
-export { splitShows }
+export { splitShows };
