@@ -1,5 +1,6 @@
-import { Link, Route, Switch } from "wouter";
+import { Route, Switch } from "wouter";
 import { navigationItems } from "@/config";
+import { NavigationBar } from "./layout/NavigationBar";
 
 const sortedNavigationItems = navigationItems.toSorted(
   (a, b) => a.sortOrder - b.sortOrder,
@@ -8,27 +9,23 @@ const sortedNavigationItems = navigationItems.toSorted(
 function App() {
   return (
     <main>
-      <section className="md:mt-15 mt-10">
+      <section className="mt-10">
         <div className="flex items-center justify-center">
-          <h1 className="md:text-8xl text-6xl bg-gray-800 text-white font-eurostile font-medium uppercase px-3 pb-2 rotate-1">
-            Janitors
-          </h1>
+          <h1 className="sr-only">Janitors</h1>
+          <p
+            className="md:text-7xl text-6xl 
+            bg-gray-800
+            border-2 border-dashed border-gray-800 
+            text-soft-blue font-eurostile font-medium uppercase 
+            px-3 pb-4 rotate-1"
+          >
+            <span className="font-brush">J</span>an
+            <span className="font-times">i</span>tor
+            <span className="font-sans">s</span>
+          </p>
         </div>
 
-        <div className="flex justify-center items-center mt-5 px-10">
-          <nav>
-            <ul className="list-none list-inside flex gap-8 font-typewriter font-bold uppercase">
-              {sortedNavigationItems.map((item) => (
-                <li
-                  key={item.link}
-                  className={`bg-gray-800 text-white px-2 md:text-xl text-lg ${item.className}`}
-                >
-                  <Link href={item.link}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+        <NavigationBar navigationItems={sortedNavigationItems} />
 
         <Switch>
           {sortedNavigationItems.map((item) => (
