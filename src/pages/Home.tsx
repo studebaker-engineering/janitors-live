@@ -8,7 +8,7 @@ export default function Home() {
         <img
           src={horses}
           alt="horses"
-          className="md:w-xl w-fit border border-dashed border-gray-800"
+          className="md:w-xl w-fit border border-dashed border-gray-800 "
         />
         <img src={star} alt="star" className="absolute w-20 grayscale-100" />
       </div>
@@ -16,7 +16,8 @@ export default function Home() {
         <p className="font-brush md:text-4xl text-2xl mt-5">
           Welcome to our web page!
         </p>
-        <p className="font-times uppercase font-bold text-lg">
+
+        <p className="font-times uppercase font-bold text-lg mt-3 underline underline-offset-4">
           ★ Please, enjoy your stay ★
         </p>
       </div>

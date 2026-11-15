@@ -1,7 +1,8 @@
 import Papa from "papaparse";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import truck from "@/assets/truck.png";
 import { splitShows } from "@/lib";
-import type { Show } from "@/types";
+import type { Show, ShowTableConfig } from "@/types";
 
 export default function Shows() {
   const [shows, setShows] = useState<{ upcoming: Show[]; archive: Show[] }>({
@@ -57,49 +58,84 @@ export default function Shows() {
     };
   }, []);
 
+  const showTableConfig = useMemo((): ShowTableConfig[] => {
+    return [
+      {
+        title: "Upcoming Shows",
+        rows: shows.upcoming,
+        empty: "No upcoming shows. Check back soon!",
+      },
+      {
+        title: "Memory Lane",
+        rows: shows.archive,
+        empty: "Something bad happened...",
+      },
+    ];
+  }, [shows.archive, shows.upcoming]);
+
   return (
     <>
-      <h2 className="text-center text-2xl font-bold mt-5">Shows</h2>
-      {[
-        {
-          title: "Upcoming Shows",
-          rows: shows.upcoming,
-          empty: "No upcoming shows. Check back soon!",
-        },
-        {
-          title: "Live Archive",
-          rows: shows.archive,
-          empty: "No past shows yet.",
-        },
-      ].map(({ title, rows, empty }) => (
+      <div className="flex items-center justify-center mt-5 px-3">
+        <img
+          src={truck}
+          alt="cool truck"
+          className="md:w-xl w-fit border border-dashed border-gray-800"
+        />
+      </div>
+      <div className="text-center text-gray-800">
+        <p className="font-brush md:text-4xl text-2xl mt-5">
+          Here comes Janitors!
+        </p>
+
+        <p className="font-times uppercase font-bold text-lg mt-3 underline underline-offset-4">
+          See below our past and upcoming live performances
+        </p>
+      </div>
+      {showTableConfig.map(({ title, rows, empty }) => (
         <section key={title} className="mt-5" aria-label={title}>
           <div className="flex justify-center items-center mt-3 px-10">
-            <table className="w-full max-w-5xl border text-start bg-white">
-              <caption className="text-start">{title}</caption>
+            <table className="w-full max-w-5xl border border-gray-800 border-spacing-2">
+              <caption className="text-start font-brush mb-1">{title}</caption>
               <thead>
-                <tr>
-                  <th className="border text-start px-3">Date</th>
-                  <th className="border text-start px-3">Venue</th>
-                  <th className="border text-start px-3">Location</th>
-                  <th className="border text-start px-3">Bands</th>
+                <tr className="font-typewriter uppercase bg-gray-800">
+                  <th className="text-soft-blue text-start md:w-1/10 w-1/4 px-2">
+                    Date
+                  </th>
+                  <th className="text-soft-blue text-start md:w-2/10 w-1/4 px-2">
+                    Venue
+                  </th>
+                  <th className="text-soft-blue text-start md:w-4/10 w-1/4 px-2">
+                    Bands
+                  </th>
+                  <th className="text-soft-blue text-start md:w-3/10 w-1/4 px-2">
+                    Location
+                  </th>
                 </tr>
               </thead>
-              <tbody aria-live="polite">
+              <tbody aria-live="polite" className="font-times">
                 {loading || error || rows.length === 0 ? (
                   <tr>
-                    <td className="border px-3" colSpan={4}>
+                    <td className="border px-3 font-times" colSpan={4}>
                       {loading
-                        ? `Loading ${title.toLowerCase()}…`
+                        ? `Loading ${title.toLowerCase()}...`
                         : error || empty}
                     </td>
                   </tr>
                 ) : (
                   rows.map((show) => (
                     <tr key={JSON.stringify(show)}>
-                      <td className="border px-3">{show.date}</td>
-                      <td className="border px-3">{show.venue || "TBA"}</td>
-                      <td className="border px-3">{show.location || "TBA"}</td>
-                      <td className="border px-3">{show.bands || "TBA"}</td>
+                      <td className="border border-gray-800 px-2">
+                        {show.date}
+                      </td>
+                      <td className="border border-gray-800 px-2">
+                        {show.venue || "TBA"}
+                      </td>
+                      <td className="border border-gray-800 px-2">
+                        <div className="">{show.bands || "TBA"}</div>
+                      </td>
+                      <td className="border border-gray-800 px-2">
+                        {show.location || "TBA"}
+                      </td>
                     </tr>
                   ))
                 )}

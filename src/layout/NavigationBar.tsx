@@ -12,9 +12,18 @@ export const NavigationBar = ({ navigationItems }: PropTypes) => (
         {navigationItems.map((item) => (
           <li
             key={item.link}
-            className={`bg-gray-800 text-soft-blue px-2 md:text-xl text-lg ${item.className} border-2 border-dashed border-gray-800`}
+            className={`md:text-xl text-lg ${item.className}`}
           >
-            <Link href={item.link}>{item.label}</Link>
+            <Link
+              className={(active) =>
+                active
+                  ? "text-gray-800 bg-soft-blue border-2 border-dashed border-gray-800 px-2 font-bold hover:text-soft-blue hover:bg-gray-800 transition-colors"
+                  : "bg-gray-800 text-soft-blue border-2 border-dashed border-gray-800 px-2"
+              }
+              href={item.link}
+            >
+              {item.label}
+            </Link>
           </li>
         ))}
       </ul>
