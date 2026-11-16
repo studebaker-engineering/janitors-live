@@ -9,17 +9,16 @@ const sortedNavigationItems = navigationItems.toSorted(
 
 function App() {
   return (
-    <main className="min-h-svh flex flex-col justify-between items-center">
-      <section className="mt-10 w-full">
-        <div className="flex items-center justify-center">
-          <h1 className="sr-only">Janitors</h1>
-          <p
-            className="md:text-7xl text-6xl bg-gray-800
+    <main className="min-h-lvh flex flex-col justify-between items-center">
+      <section className="w-full">
+        <div className="flex flex-col items-center justify-center">
+          <h1
+            className="md:text-7xl text-5xl bg-gray-800 text-soft-blue
             font-brush font-medium uppercase tracking-widest
-            px-3 rotate-1 text-soft-blue"
+            mt-10 px-3 py-3 rotate-1"
           >
             Janitors
-          </p>
+          </h1>
         </div>
 
         <NavigationBar navigationItems={sortedNavigationItems} />

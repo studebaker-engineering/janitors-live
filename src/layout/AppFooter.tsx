@@ -1,23 +1,16 @@
-export const AppFooter = () => (
-  <footer className="mt-20 w-full">
-    <div className="marquee bg-gray-800 text-soft-blue py-1 text-sm">
-      <ul className="marquee-content">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-      </ul>
+import { ScrollingMarquee } from "@/components/ScrollingMarquee";
 
-      <ul aria-hidden="true" className="marquee-content">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-      </ul>
-    </div>
+export const AppFooter = () => (
+  <footer className="mt-20 w-full text-center">
+    <p className="font-times text-gray-800 mb-3">
+      &copy;2026 Janitors. All Rights Reserved.
+    </p>
+    <ScrollingMarquee
+      marqueeItems={[
+        "Janitors Promotional Tape available now on www.youtube.com!",
+        "Janitors Promotional Tape available now on www.youtube.com! ",
+        "Janitors Promotional Tape available now on www.youtube.com!  ",
+      ]}
+    />
   </footer>
 );
